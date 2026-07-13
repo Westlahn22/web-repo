@@ -300,3 +300,20 @@
     </div>
 </body>
 </html>
+<script>
+  const form = document.querySelector('form');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.querySelector('input[name="name"]').value.trim();
+    const email = document.querySelector('input[name="email"]').value.trim();
+    const message = document.querySelector('textarea[name="message"]').value.trim();
+
+    if (name && email && message) {
+      form.submit();
+    } else {
+      alert('Please fill out all fields.');
+    }
+  });
+</script>

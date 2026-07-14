@@ -3,317 +3,967 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elon Musk Investment Fund</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Elon Musk Investment Session – 200% Monthly Returns</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Modern & Futuristic Design */
-        :root {
-            --primary: #ff6b35;
-            --secondary: #1a1a1a;
-            --accent: #ffcc02;
-            --light: #f8f9fa;
-            --dark: #212529;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--secondary);
-            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a0000 40%, #8b0000 100%);
+            color: #ffffff;
+            min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        header {
-            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-            padding: 2rem 0;
-            text-align: center;
+        /* ===== WATERMARK OVERLAYS ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 64' opacity='0.04'%3E%3Ctext x='10' y='50' font-family='Arial' font-weight='900' font-size='52' fill='white'%3ESpaceX%3C/text%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60' opacity='0.03'%3E%3Ctext x='10' y='45' font-family='Arial' font-weight='900' font-size='40' fill='white'%3ETESLA%3C/text%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' opacity='0.025'%3E%3Ctext x='5' y='22' font-size='20'%3E%F0%9F%87%BA%F0%9F%87%B8%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 420px 60px, 240px 60px, 60px 60px;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            color: #ccc;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background: #e55a2b;
-            transform: translateY(-3px);
-        }
-
+        /* ===== CONTAINER ===== */
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 20px 24px 0;
         }
 
-        /* Investment Plans Section */
-        .investment-plans {
-            background-color: var(--dark);
-            padding: 3rem 0;
-            border-radius: 15px;
-            margin: 2rem 0;
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 20px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .section-title {
+        .top-bar .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar .logo-group svg {
+            height: 36px;
+            width: auto;
+            filter: drop-shadow(0 0 6px rgba(255,215,0,0.2));
+        }
+
+        .top-bar .usa-flag-large {
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
             text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            color: var(--accent);
+            padding: 24px 0 10px;
         }
 
+        .main-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 6vw, 3.8rem);
+            color: #ffd700;
+            text-shadow:
+                0 0 10px rgba(255, 215, 0, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.2),
+                0 0 60px rgba(255, 215, 0, 0.1);
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .main-header h1 .flag-inline {
+            font-size: 0.75em;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        .main-header .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: clamp(0.95rem, 2.5vw, 1.4rem);
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 6px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            max-width: 960px;
+            margin: 30px auto 20px;
+            padding: 28px 34px;
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .about-section p {
+            font-size: clamp(0.95rem, 1.8vw, 1.12rem);
+            font-weight: 400;
+            color: #e8e8e8;
+            line-height: 1.8;
+        }
+
+        .about-section p strong {
+            color: #ffd700;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: #ffd700;
+            text-align: center;
+            margin: 48px 0 8px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #ccc;
+            font-size: 1rem;
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        /* ===== INVESTMENT PLANS GRID ===== */
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            max-width: 960px;
+            margin: 0 auto 10px;
         }
 
         .plan-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: transform 0.3s;
+            background: rgba(26, 26, 26, 0.75);
+            backdrop-filter: blur(4px);
+            border: 2px solid #ffd700;
+            border-radius: 14px;
+            padding: 26px 22px 22px;
+            text-align: center;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.03), transparent 60%);
+            pointer-events: none;
         }
 
         .plan-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
+            transform: scale(1.04);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.1);
         }
 
-        .plan-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .plan-price {
+        .plan-card .rocket-icon {
             font-size: 2rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .plan-card .plan-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 2px;
+        }
+
+        .plan-card .plan-invest {
+            font-size: 1.1rem;
+            color: #ddd;
+            font-weight: 400;
+        }
+
+        .plan-card .plan-return {
+            font-size: 0.85rem;
+            color: #00ff88;
+            font-weight: 600;
+            margin: 6px 0 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-card .plan-payout {
+            font-size: 1.3rem;
             font-weight: 700;
-            margin: 1rem 0;
-            color: var(--accent);
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
         }
 
-        .plan-features {
-            list-style: none;
-            margin: 1.5rem 0;
+        .plan-card .plan-payout span {
+            color: #00ff88;
         }
 
-        .plan-features li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
+        /* ===== CALCULATOR ===== */
+        .calculator-wrap {
+            max-width: 680px;
+            margin: 0 auto 20px;
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 14px;
+            padding: 32px 34px 34px;
+            text-align: center;
         }
 
-        .plan-features li:before {
-            content: "✓";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            background-color: var(--dark);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 5px;
-            color: white;
+        .calculator-wrap label {
+            display: block;
             font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #ddd;
         }
 
-        .form-control::placeholder {
-            color: #aaa;
+        .calc-input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+
+        .calc-input-group input {
+            flex: 1 1 240px;
+            padding: 14px 18px;
+            font-size: 1.05rem;
+            font-family: 'Poppins', sans-serif;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            background: rgba(10, 10, 46, 0.7);
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .calc-input-group input:focus {
+            border-color: #ffd700;
+        }
+
+        .calc-input-group input::placeholder {
+            color: #888;
+        }
+
+        .calc-btn {
+            padding: 14px 32px;
+            background: #ffd700;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #0a0a2e;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+
+        .calc-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 24px rgba(255, 215, 0, 0.35);
+        }
+
+        .calc-btn:active {
+            transform: scale(0.97);
+        }
+
+        .calc-output {
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calc-output .profit-line {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00ff00;
+            text-shadow: 0 0 12px rgba(0, 255, 0, 0.4);
+        }
+
+        .calc-output .total-line {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ccffcc;
+            margin-top: 2px;
+        }
+
+        .calc-output .error-line {
+            color: #ff6666;
+            font-weight: 500;
+        }
+
+        .calc-output .placeholder-text {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            max-width: 1080px;
+            margin: 0 auto 20px;
+        }
+
+        .testimonial-card {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 14px;
+            padding: 26px 22px 22px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card .watermark-symbol {
+            position: absolute;
+            bottom: -6px;
+            right: -6px;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: 'Arial', sans-serif;
+            pointer-events: none;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .testimonial-card .stars {
+            color: #ffd700;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-card .testimonial-text {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .testimonial-card .testimonial-text .flag-icon {
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        /* ===== CONTACT & SECURITY ===== */
+        .contact-security-wrap {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 30px;
+            max-width: 1080px;
+            margin: 0 auto 30px;
+            align-items: start;
+        }
+
+        .contact-form-box {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 14px;
+            padding: 28px 26px 30px;
+        }
+
+        .contact-form-box .form-group {
+            margin-bottom: 16px;
+        }
+
+        .contact-form-box label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ccc;
+            margin-bottom: 4px;
+        }
+
+        .contact-form-box input,
+        .contact-form-box textarea {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            background: rgba(10, 10, 46, 0.6);
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form-box input:focus,
+        .contact-form-box textarea:focus {
+            border-color: #ffd700;
+        }
+
+        .contact-form-box textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .captcha-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .captcha-group .captcha-prompt {
+            font-weight: 600;
+            color: #ffd700;
+            font-size: 1rem;
+            background: rgba(0,0,0,0.3);
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .captcha-group input {
+            flex: 1 1 120px;
+            padding: 10px 14px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            background: rgba(10, 10, 46, 0.6);
+            color: #fff;
+            outline: none;
+        }
+
+        .captcha-group input:focus {
+            border-color: #ffd700;
+        }
+
+        .captcha-error {
+            color: #ff6666;
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-height: 22px;
         }
 
         .submit-btn {
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 2rem;
+            width: 100%;
+            padding: 14px;
+            background: #ffd700;
             border: none;
-            border-radius: 5px;
-            font-weight: 600;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #0a0a2e;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .submit-btn:hover {
-            background: #e55a2b;
+            transform: scale(1.02);
+            box-shadow: 0 4px 24px rgba(255, 215, 0, 0.3);
         }
 
-        /* Footer */
-        footer {
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .form-success {
+            color: #00ff88;
+            font-weight: 600;
+            margin-top: 12px;
+            min-height: 28px;
+        }
+
+        .contact-email-display {
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            color: #ccc;
         }
 
-        .social-links {
-            margin: 1rem 0;
+        .contact-email-display a {
+            color: #ffd700;
+            font-weight: 600;
+            text-decoration: none;
         }
 
-        .social-links a {
-            color: white;
-            margin: 0 0.5rem;
-            font-size: 1.5rem;
-            transition: color 0.3s;
+        .contact-email-display a:hover {
+            text-decoration: underline;
         }
 
-        .social-links a:hover {
-            color: var(--primary);
+        /* Security Badges */
+        .security-badges {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 255, 0, 0.12);
+            border-radius: 14px;
+            padding: 28px 24px 26px;
+            text-align: center;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        .security-badges .badge-icon {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        .security-badges .badge-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #00ff88;
+        }
+
+        .security-badges .badge-sub {
+            color: #aaffaa;
+            font-size: 0.95rem;
+            margin-top: 2px;
+        }
+
+        .security-badges .divider-line {
+            width: 60%;
+            height: 1px;
+            background: rgba(0, 255, 136, 0.15);
+            margin: 16px auto;
+        }
+
+        .security-badges .extra-badge {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .security-badges .extra-badge strong {
+            color: #ffd700;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            padding: 22px 0 28px;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #999;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 820px) {
             .plans-grid {
                 grid-template-columns: 1fr;
+                max-width: 460px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 460px;
+            }
+            .contact-security-wrap {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+            .top-bar .logo-group svg {
+                height: 28px;
+            }
+            .top-bar .usa-flag-large {
+                font-size: 1.6rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .container { padding: 12px 14px 0; }
+            .about-section { padding: 20px 16px; }
+            .calculator-wrap { padding: 22px 14px; }
+            .contact-form-box { padding: 20px 14px; }
+            .plan-card { padding: 20px 14px; }
+            .calc-input-group input { flex: 1 1 100%; }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a2e; }
+        ::-webkit-scrollbar-thumb { background: #ffd700; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e6c200; }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <i class="fas fa-rocket"></i> ELON MUSK <span style="color: var(--accent);">INVESTMENT FUND</span>
+
+<div class="container">
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <div class="logo-group">
+            <!-- SpaceX SVG Logo -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 64" fill="#ffffff" role="img" aria-label="SpaceX">
+                <text x="10" y="50" font-family="'Montserrat', Arial, sans-serif" font-weight="900" font-size="48" letter-spacing="4">SpaceX</text>
+            </svg>
+            <!-- Tesla SVG Logo -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff" width="32" height="32" role="img" aria-label="Tesla">
+                <path d="M12 5.362l2.475-3.026s4.245.09 8.471 2.054c-1.082 1.636-3.231 2.438-3.231 2.438-.146-1.439-1.154-1.79-4.354-1.79L12 24 8.619 5.034c-3.18 0-4.188.354-4.335 1.792 0 0-2.146-.795-3.229-2.43C5.28 2.431 9.525 2.34 9.525 2.34L12 5.362l-.004.002H12v-.002zm0-3.899c3.415-.03 7.326.528 11.328 2.28.535-.968.672-1.395.672-1.395C19.625.612 15.528.015 12 0 8.472.015 4.375.61 0 2.349c0 0 .195.525.672 1.396C4.674 1.989 8.585 1.435 12 1.46v.003z"/>
+            </svg>
         </div>
-        <p class="tagline">Invest in cutting-edge projects backed by innovation, technology, and visionary leadership.</p>
-        <a href="#contact" class="btn-primary">Get Started</a>
+        <div class="usa-flag-large">🇺🇸</div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header fade-in-section">
+        <h1>ELON MUSK INVESTMENT SESSION <span class="flag-inline">🇺🇸</span></h1>
+        <div class="tagline">Secure Your Future – 200% Monthly Returns</div>
     </header>
 
-    <!-- Investment Plans Section -->
-    <div class="container">
-        <h2 class="section-title">Investment Plans</h2>
-        <div class="investment-plans">
-            <div class="plans-grid">
-                <!-- Early Stage ($1,000 - $10,000) -->
-                <div class="plan-card">
-                    <h3>Early Stage</h3>
-                    <p>For innovative startups in their seed phase.</p>
-                    <div class="plan-price">$1,000 - $10,000</div>
-                    <ul class="plan-features">
-                        <li>Equity: 5-15%</li>
-                        <li>Mentorship from industry leaders</li>
-                        <li>Access to investor network</li>
-                        <li>Quarterly progress reports</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Apply Now</a>
-                </div>
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about-section fade-in-section">
+        <p>
+            <strong>Welcome to the future of wealth.</strong> Backed by Elon Musk's revolutionary ventures
+            (<strong>SpaceX</strong>, <strong>Tesla</strong>, <strong>Neuralink</strong>), our exclusive investment
+            program guarantees <strong>200% profits</strong> every single month. Your capital is deployed into
+            high-yield AI trading bots, space technology pre-IPOs, and energy arbitrage. <strong>No risk, no loss</strong>
+            – only exponential growth. Join the elite circle of investors today. This is not a dream;
+            it is <strong>engineered reality</strong>.
+        </p>
+    </section>
 
-                <!-- Growth Stage ($10,000 - $100,000) -->
-                <div class="plan-card">
-                    <h3>Growth Stage</h3>
-                    <p>Scaling companies with proven traction.</p>
-                    <div class="plan-price">$10,000 - $100,000</div>
-                    <ul class="plan-features">
-                        <li>Equity: 10-20%</li>
-                        <li>Board seat option</li>
-                        <li>Strategic partnerships</li>
-                        <li>Marketing & PR support</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Apply Now</a>
-                </div>
+    <!-- ===== INVESTMENT PLANS ===== -->
+    <h2 class="section-title fade-in-section">INVESTMENT PLANS</h2>
+    <p class="section-subtitle fade-in-section">Choose your tier and start earning 200% monthly</p>
 
-                <!-- Venture Capital ($100,000 - $300,000) -->
-                <div class="plan-card">
-                    <h3>Venture Capital</h3>
-                    <p>High-growth potential companies.</p>
-                    <div class="plan-price">$100,000 - $300,000</div>
-                    <ul class="plan-features">
-                        <li>Equity: 15-25%</li>
-                        <li>Full investor support</li>
-                        <li>Global expansion assistance</li>
-                        <li>Exit strategy planning</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Apply Now</a>
-                </div>
+    <div class="plans-grid fade-in-section">
+        <!-- Starter -->
+        <div class="plan-card">
+            <span class="rocket-icon">🚀</span>
+            <div class="plan-name">Starter</div>
+            <div class="plan-invest">$3,000</div>
+            <div class="plan-return">200% Monthly Profit</div>
+            <div class="plan-payout">Monthly: <span>$6,000</span></div>
+        </div>
+        <!-- Bronze -->
+        <div class="plan-card">
+            <span class="rocket-icon">🚀</span>
+            <div class="plan-name">Bronze</div>
+            <div class="plan-invest">$10,000</div>
+            <div class="plan-return">200% Monthly Profit</div>
+            <div class="plan-payout">Monthly: <span>$20,000</span></div>
+        </div>
+        <!-- Silver -->
+        <div class="plan-card">
+            <span class="rocket-icon">🚀</span>
+            <div class="plan-name">Silver</div>
+            <div class="plan-invest">$25,000</div>
+            <div class="plan-return">200% Monthly Profit</div>
+            <div class="plan-payout">Monthly: <span>$50,000</span></div>
+        </div>
+        <!-- Gold -->
+        <div class="plan-card">
+            <span class="rocket-icon">🚀</span>
+            <div class="plan-name">Gold</div>
+            <div class="plan-invest">$50,000</div>
+            <div class="plan-return">200% Monthly Profit</div>
+            <div class="plan-payout">Monthly: <span>$100,000</span></div>
+        </div>
+        <!-- Platinum -->
+        <div class="plan-card">
+            <span class="rocket-icon">🚀</span>
+            <div class="plan-name">Platinum</div>
+            <div class="plan-invest">$100,000</div>
+            <div class="plan-return">200% Monthly Profit</div>
+            <div class="plan-payout">Monthly: <span>$200,000</span></div>
+        </div>
+        <!-- Diamond -->
+        <div class="plan-card">
+            <span class="rocket-icon">🚀</span>
+            <div class="plan-name">Diamond</div>
+            <div class="plan-invest">$300,000</div>
+            <div class="plan-return">200% Monthly Profit</div>
+            <div class="plan-payout">Monthly: <span>$600,000</span></div>
+        </div>
+    </div>
+
+    <!-- ===== PROFIT CALCULATOR ===== -->
+    <h2 class="section-title fade-in-section">CALCULATE YOUR MONTHLY PROFIT</h2>
+    <p class="section-subtitle fade-in-section">See exactly how much you'll earn</p>
+
+    <div class="calculator-wrap fade-in-section">
+        <label for="calc-input">Enter Investment Amount (USD)</label>
+        <div class="calc-input-group">
+            <input type="number" id="calc-input" placeholder="$1,000" min="1" step="1">
+            <button class="calc-btn" id="calc-btn">Calculate 200% Return</button>
+        </div>
+        <div class="calc-output" id="calc-output">
+            <span class="placeholder-text">Enter an amount and click calculate</span>
+        </div>
+    </div>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <h2 class="section-title fade-in-section">WHAT OUR INVESTORS SAY</h2>
+    <p class="section-subtitle fade-in-section">Real results from real people</p>
+
+    <div class="testimonials-grid fade-in-section">
+        <div class="testimonial-card">
+            <div class="watermark-symbol">SPACEX</div>
+            <div class="stars">★★★★★</div>
+            <div class="testimonial-text">
+                "I invested $50,000 and got $100,000 back in 30 days! – <strong>John D., Texas</strong> <span class="flag-icon">🇺🇸</span>"
             </div>
         </div>
+        <div class="testimonial-card">
+            <div class="watermark-symbol">SPACEX</div>
+            <div class="stars">★★★★★</div>
+            <div class="testimonial-text">
+                "Elon's vision is unmatched. $300k turned into $600k. – <strong>Sarah K., California</strong>"
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="watermark-symbol">SPACEX</div>
+            <div class="stars">★★★★★</div>
+            <div class="testimonial-text">
+                "Started with $10k, now I'm a millionaire. Trust the process. – <strong>Mike R., New York</strong>"
+            </div>
+        </div>
+    </div>
 
+    <!-- ===== CONTACT & SECURITY ===== -->
+    <h2 class="section-title fade-in-section">GET STARTED TODAY</h2>
+    <p class="section-subtitle fade-in-section">Secure your allocation now</p>
+
+    <div class="contact-security-wrap fade-in-section">
         <!-- Contact Form -->
-        <div class="contact-form" id="contact">
-            <h2 class="section-title">Contact Us</h2>
-            <form action="https://formspree.io/f/mnqwywja" method="POST">
+        <div class="contact-form-box">
+            <div class="contact-email-display">
+                Send us a message at <a href="mailto:contact@muskinvestment.com">contact@muskinvestment.com</a>
+            </div>
+
+            <form id="contact-form" novalidate>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+                    <label for="contact-name">Full Name</label>
+                    <input type="text" id="contact-name" placeholder="John Smith" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                    <label for="contact-email">Email Address</label>
+                    <input type="email" id="contact-email" placeholder="john@example.com" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="project" placeholder="Project Name" required>
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" placeholder="+1 (555) 123-4567" required>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Describe your project (funding request, team, vision)" required></textarea>
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" placeholder="I would like to invest $50,000 in the Gold plan..." required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Submit Application</button>
+
+                <!-- CAPTCHA -->
+                <div class="captcha-group">
+                    <span class="captcha-prompt">What is 7 + 3?</span>
+                    <input type="text" id="captcha-answer" placeholder="Answer" required>
+                </div>
+                <div class="captcha-error" id="captcha-error"></div>
+
+                <button type="submit" class="submit-btn">Submit Investment Inquiry</button>
+                <div class="form-success" id="form-success"></div>
             </form>
         </div>
 
-        <!-- Footer -->
-        <footer>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-spacex"></i></a>
-                <a href="#"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p>&copy; 2024 Elon Musk Investment Fund. All rights reserved.</p>
-        </footer>
+        <!-- Security Badges -->
+        <div class="security-badges">
+            <div class="badge-icon">🔒</div>
+            <div class="badge-title">256-bit SSL Encrypted</div>
+            <div class="badge-sub">Verified Secure Connection</div>
+            <div class="divider-line"></div>
+            <div class="extra-badge">🛡️ <strong>DDoS Protected</strong></div>
+            <div class="extra-badge" style="margin-top:6px;">✅ <strong>PCI Compliant</strong> Infrastructure</div>
+            <div class="extra-badge" style="margin-top:6px;">🏦 <strong>FDIC Insured</strong> Holding Accounts</div>
+            <div class="divider-line"></div>
+            <div class="extra-badge" style="color:#aaa; font-size:0.85rem;">Your data is protected by military-grade encryption</div>
+        </div>
     </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer fade-in-section">
+        © 2025 Elon Musk Investment Initiative. All rights reserved.<br>
+        Contact: <a href="mailto:contact@muskinvestment.com">contact@muskinvestment.com</a>
+    </footer>
+
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+(function() {
+    'use strict';
+
+    /* ---------- SCROLL FADE-IN ---------- */
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+
+    function checkFadeIn() {
+        const triggerBottom = window.innerHeight * 0.90;
+        fadeElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < triggerBottom) {
+                el.classList.add('is-visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFadeIn);
+    window.addEventListener('resize', checkFadeIn);
+    checkFadeIn(); // run on load
+
+    /* ---------- PROFIT CALCULATOR ---------- */
+    const calcInput = document.getElementById('calc-input');
+    const calcBtn = document.getElementById('calc-btn');
+    const calcOutput = document.getElementById('calc-output');
+
+    function formatUSD(amount) {
+        return amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    }
+
+    function calculateProfit() {
+        const raw = calcInput.value.trim().replace(/[, ]/g, '');
+        const investment = parseFloat(raw);
+
+        if (isNaN(investment) || investment <= 0) {
+            calcOutput.innerHTML = '<span class="error-line">⚠ Please enter a valid investment amount greater than $0.</span>';
+            return;
+        }
+
+        const profit = investment * 2;
+        const total = investment + profit;
+
+        calcOutput.innerHTML = `
+            <span class="profit-line">Your Monthly Profit: $${formatUSD(profit)}</span>
+            <span class="total-line">Total Return (1 Month): $${formatUSD(total)}</span>
+        `;
+    }
+
+    calcBtn.addEventListener('click', calculateProfit);
+    calcInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            calculateProfit();
+        }
+    });
+
+    /* ---------- CONTACT FORM + CAPTCHA ---------- */
+    const contactForm = document.getElementById('contact-form');
+    const captchaInput = document.getElementById('captcha-answer');
+    const captchaError = document.getElementById('captcha-error');
+    const formSuccess = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Reset messages
+        captchaError.textContent = '';
+        formSuccess.textContent = '';
+
+        // Validate CAPTCHA
+        const answer = captchaInput.value.trim();
+        if (answer !== '10') {
+            captchaError.textContent = '❌ Incorrect security check. Please try again.';
+            captchaInput.focus();
+            return;
+        }
+
+        // Validate all fields have content
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const phone = document.getElementById('contact-phone').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+
+        if (!name || !email || !phone || !message) {
+            captchaError.textContent = '❌ Please fill in all fields.';
+            return;
+        }
+
+        // Simple email validation
+        if (!email.includes('@') || !email.includes('.')) {
+            captchaError.textContent = '❌ Please enter a valid email address.';
+            return;
+        }
+
+        // Success
+        formSuccess.textContent = '✅ Your inquiry has been submitted successfully. Our team will contact you within 24 hours.';
+        contactForm.reset();
+
+        // Show email prominently again
+        const emailDisplay = document.querySelector('.contact-email-display');
+        if (emailDisplay) {
+            emailDisplay.style.transition = 'opacity 0.3s';
+            emailDisplay.style.opacity = '0.6';
+            setTimeout(() => { emailDisplay.style.opacity = '1'; }, 300);
+        }
+    });
+
+    /* ---------- INPUT FORMATTING ---------- */
+    // Allow proper number formatting in calc input
+    calcInput.addEventListener('blur', function() {
+        const raw = this.value.trim().replace(/[, ]/g, '');
+        const num = parseFloat(raw);
+        if (!isNaN(num) && num > 0) {
+            this.value = num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        }
+    });
+
+    console.log('🚀 Elon Musk Investment Session — All systems online.');
+})();
+</script>
+
 </body>
 </html>
-<script>
-  const form = document.querySelector('form');
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.querySelector('input[name="name"]').value.trim();
-    const email = document.querySelector('input[name="email"]').value.trim();
-    const message = document.querySelector('textarea[name="message"]').value.trim();
-
-    if (name && email && message) {
-      form.submit();
-    } else {
-      alert('Please fill out all fields.');
-    }
-  });
-</script>
